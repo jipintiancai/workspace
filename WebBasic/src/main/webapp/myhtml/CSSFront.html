@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+
+<style type="text/css">
+
+/*一、元素选择器*/
+/*1.继承性：父元素的样式可以被子元素继承（颜色字体）
+	font-family color font-size */
+	body{
+		font-family: "宋体";
+		color:blue;
+		font-size:20px;
+	}
+/*2.层叠型：给一个元素设置不同的声明效果会叠加*/
+	
+
+/*3.优先级：给同一个元素设置相同的声明，效果以后者为准，就近原则*/
+	h1{
+		font-family: "黑体";
+		color:red;
+	}
+	
+/*二、类选择器*/
+/*1.选择class等于某值的所有元素
+	.class是程序员根据逻辑自己给元素增加的分类*/
+	.firstDemo{
+		color:pink;
+	}
+	
+/*三、id选择器*/
+/*1.选择id等于某值的唯一元素*/
+	#p1{
+		color:green;
+	}
+	
+/*四、选择器组*/
+/*写出一组选择器，选中每个选择器所对应的目标的并集 
+	font-weight*/
+	p,#p1{
+		font-weight:bold;
+	}
+	
+/*五、派生选择器*/
+/*1.选择某元素的子孙*/
+	ol ul{
+		color:red;
+	}
+	
+/*2.选择某元素的儿子*/
+	ol>ul{
+		font-size:30px;
+	}
+
+/*六、伪类选择器*/
+/*根据元素状态选择元素*/
+/*1.选择未访问过的超链接 a:link*/
+	a:link{
+		color:red;
+	}
+/*2.选择已访问过的超链接 a:visited*/
+	a:visited{
+		color:green;
+	}
+/*3.激活态的按钮*/
+	
+	#i1:active{
+		background-color:pink;
+	}
+/*4.选择有焦点的文本框、密码框、选择域*/
+	#i2:focus{
+		background-color:black;
+	}
+/*5.选择鼠标悬停态的图片*/
+	img:hover{
+		width:250px;
+		high:250px;
+	}
+</style>
+
+</head>
+<body>
+	
+	<h1 class="firstDemo">爱惜吧?</h1>
+	<h2 class="firstDemo">唉希吧	!</h2>
+	<p id="p1">蹦蹬你个蹦蹬</p>
+	<p>嘚吧嘚</p>
+	
+	<ol>
+		<li>一个</li>
+		<li>两个</li>
+		<li>三个
+			<ul>
+				<li>三个半</li>
+			</ul>
+		</li>
+		<ul>
+			<li>四个</li>
+		</ul>
+	</ol>
+	
+	<p>
+		<a href="http://www.taobao.com" target="_blank">淘宝</a>
+		<br/>
+		<a href="http://www.baidu.com">百度</a>
+		<a href="www.suibian.com">随便</a>
+		
+		<input type="button" value="一个按钮" id="i1"/>
+		<p>
+			<input type="text" id="i2"/>
+		</p>
+		<img src="../images/logo.png">
+	</p>
+</body>
+</html>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	function square() {
+		var text = document.getElementById("num");
+		var num = text.value;
+		console.log(text);
+		console.log(num);
+		
+		if(isNaN(num)){
+			alert("请输入数字");
+		}else{
+			var result = document.getElementById("result");
+			result.value = num*num;
+		}
+	}
+	var a = 10;
+	var b = 10.0;
+	console.log(a ==b);
+</script>
+
+</head>
+<body>
+
+	<input type="text" id="num"/>
+	<input type="button" value="平方" onclick="square();"/>
+	==
+	<input type="text" id="result"/>
+	<!-- <span id ="result"/> -->
+</body>
+</html>

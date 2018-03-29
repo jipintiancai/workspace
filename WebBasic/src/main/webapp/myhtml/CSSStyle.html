@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>内联样式</title>
+
+	<!-- 内部样式
+	在head元素里的style标签里写样式 可被当前页面元素复用 -->
+	<style type="text/css">
+	/*CSS的注释*/
+	h2{
+		color:green;
+	}
+	</style>
+	
+	<!-- 外部样式
+		在单独的css文件写的样式 哪个网页引用 这个网页就能复用里面的样式 -->
+	<link rel="stylesheet" href="../mycss/color.css"/>
+</head>
+<body>
+	
+	<!-- 内联样式
+		在元素的style属性内直接写样式 无法复用 -->
+	<h1 style="color:red;">CSS</h1>
+	<h2>CSS有三种用法</h2>
+	<ol>
+		<li/>内联样式
+		<li>内部样式</li>
+		<li/>外联样式
+	</ol>
+</body>
+</html>

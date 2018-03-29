@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<script>
+	var random = parseInt(Math.random() * 100);//生成随机数
+	console.log("生成的随机数为" + random);
+
+	Array.call(thisObject, args);
+	function guess() {
+
+		var textElemet = document.getElementById("text");
+		var textValue = textElemet.value; //读输入的值
+		var result = document.getElementById("result");
+
+		if (isNaN(textValue)) {
+			result.innerHTML = "请输入正确的数字";
+		} else {
+
+			result.innerHTML = textValue == random ? "相同"
+					: textValue > random ? "大了" : "小了";
+		}
+
+	}
+</script>
+</head>
+<body>
+
+	<input type="text" id="text" />
+	<input type="button" value="猜" onclick="guess();" /> =
+	<span id="result"></span>
+</body>
+</html>

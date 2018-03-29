@@ -1,0 +1,77 @@
+<!docType html>
+<html>
+<head>
+<meta charset="utf-8" />
+<title>表格</title>
+</head>
+<body>
+
+	<!-- 设置边框和单元格间距 -->
+	<table border="1" cellspacing="0" width="50%">
+		<tr>
+			<td>第一行第一列</td>
+			<td>第一行，第二列</td>
+		</tr>
+		<tr>
+			<td>第二行第一列</td>
+			<td>第二行，第二列</td>
+		</tr>
+	</table>
+	<br />
+	<table border="1" cellspacing="0">
+		<tr>
+			<!-- 跨列 -->
+			<td rowspan="2">第一行第一列1111111111</td>
+			<td>第一行，第二列</td>
+		</tr>
+		<tr>
+			<!-- <td>第二行第一列</td> -->
+			<td>第二行，第二列</td>
+		</tr>
+	</table>
+	<br />
+	<table border="1" cellspacing="0">
+		<tr>
+			<!-- 跨行 -->
+			<td>第一行第一列</td>
+			<td>第一行，第二列</td>
+		</tr>
+		<tr>
+			<td colspan="2">第二行，第二列</td>
+		</tr>
+	</table>
+
+	<!-- 行分组 -->
+	<br>
+	<table width="30%" border='12' cellspacing="0">
+		<!-- 表头 -->
+		<thead>
+			<tr>
+				<td>编号</td>
+				<td>名称</td>
+				<td>金额</td>
+			</tr>
+		</thead>
+		<!-- 表体 -->
+		<tbody style="color:blue;">
+			<tr>
+				<td>001</td>
+				<td>鼠标</td>
+				<td>100</td>
+			</tr>
+			<tr>
+				<td>002</td>
+				<td>键盘</td>
+				<td>127</td>
+			</tr>
+		</tbody>
+		<!-- 表尾 -->
+		<tfoot>
+			<tr>
+				<td colspan="2">合计</td>
+				<td>227</td>
+			</tr>
+		</tfoot>
+	</table>
+</body>
+</html>

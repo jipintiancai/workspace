@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>字体边框</title>
+
+<style type="text/css">
+
+/*1.四个边设置相同的边框
+ 	border */
+ 	p{
+ 		border:1px dashed red;
+ 	}
+ 	
+/*2.单个设置边框
+	border-left/right/top/bottom*/
+	h1{
+		border-left:10px solid blue;
+	}
+	
+/*3.快元素宽度默认为100% 高度会自适应，内容越多越高
+	设置固定高度会溢出 width height*/
+	p{
+		width:300px;
+		height:60px;
+		/*溢出时的处理
+			overflow:auto*/
+		overflow:auto;
+	}
+	
+</style>
+</head>
+<body>
+
+	<h1>这是一个大标题</h1>
+	<p>里面有个小内容</p>
+</body>
+</html>

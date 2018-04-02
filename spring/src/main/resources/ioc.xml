@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jdbc="http://www.springframework.org/schema/jdbc" xmlns:jee="http://www.springframework.org/schema/jee"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:jpa="http://www.springframework.org/schema/data/jpa"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xsi:schemaLocation="
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.2.xsd
+		http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc-3.2.xsd
+		http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee-3.2.xsd
+		http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx-3.2.xsd
+		http://www.springframework.org/schema/data/jpa http://www.springframework.org/schema/data/jpa/spring-jpa-1.3.xsd     
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
+
+		<bean id="b1" class="ioc.B"/>
+		<!-- property元素：表示使用set方法来注入依赖关系
+			name属性指定属性名 
+			ref属性指定属性值 -->
+		<bean id="a1" class="ioc.A" lazy-init="true">
+			<property name="b" ref="b1"></property>
+		</bean>
+		
+		<!-- constructor-arg元素：用来配置构造器方式的注入
+			index属性指定参数的下标（从0开始） -->
+		<bean id="a2" class="ioc.A" lazy-init="true">
+			<constructor-arg index="0" ref="b1"/>
+		</bean>
+		
+		<bean id="b" class="ioc.B"/>
+		<!-- autowire属性：表示让容器自动装配
+			byName：容器依据属性名查找对应的bean
+				然后调用对应的set方法完成注入
+				ps：如果找不到对应的bean 注入null
+					不可能找到多个符合条件的bean
+			byType：容器依据属性类型查找对应的bean
+				然后调用对应的set方法完成注入
+				ps：如果找不到对应的bean 注入null
+					找到多个符合条件的bean 会出错
+			constructor:与byType类似 调用构造器来注入 -->
+		<bean id="a3" class="ioc.A" autowire="byName"/> 
+		
+		<!-- 注入基本类型与集合 -->
+		<bean id="c1" class="ioc.C" lazy-init="true">
+			<property name="name" value="tx"/>
+			<property name="age" value="13"/>
+			<property name="interest">
+				<list>
+					<value>跳舞</value>
+					<value>篮球</value>
+				</list>
+			</property>
+			<property name="interests">
+				<set>
+					<value>soccer</value>
+					<value>programme</value>
+					<value>soccer</value>
+				</set>
+			</property>
+			<property name="scores">
+				<map>
+					<entry key="english" value="44"/>
+					<entry key="math" value="13"/>
+					<entry key="语文" value="5"/>
+				</map>
+			</property>
+			<property name="db">
+				<props>
+					<prop key="username">txx</prop>
+					<prop key="password">1233</prop>
+				</props>
+			</property>
+		</bean>
+		
+		<!-- 将集合类型的值配置成一个bean -->
+		<util:list id="interestBean">
+			<value>英语</value>
+			<value>数学</value>
+		</util:list>
+		<util:set id="interestsBean">
+			<value>english</value>
+			<value>math</value>
+		</util:set>
+		<util:map id="scoreBean">
+			<entry key="english" value="122"/>
+			<entry key="math" value="33"/>	
+		</util:map>
+		<util:properties id="dbBean">
+			<prop key="username">sst</prop>
+			<prop key="password">dda11</prop>
+		</util:properties>
+		<!-- 引用的方式注入集合类型的值 -->
+		<bean id="c2" class="ioc.C" lazy-init="true">
+			<property name="interest" ref="interestBean"></property>
+			<property name="interests" ref="interestsBean"/>
+			<property name="scores" ref="scoreBean"/>
+			<property name="db" ref="dbBean"></property>
+		</bean>
+		
+		<!-- 读取properties文件的内容
+			location="classpath："按照类路径来搜索
+			spring容器会依据路径找到对应的properties文件
+			然后读取文件内容到Properties对象中 -->
+		<util:properties id="configBean" location="classpath:config.properties"/>
+		
+	<!-- 使用spring表达式读取其他bean的属性
+		#｛｝ -->
+	<bean id="Cc" class="ioc.CopyOfC" lazy-init="true">
+		<property name="name" value="#{c1.name}"></property>
+		<property name="age" value="#{c1.age}"/>
+		<property name="interest" value="#{c1.interest[1]}"/>
+		<property name="scores" value="#{c1.scores.english}"/>
+		<property name="score" value="#{c1.scores['语文']}"></property>
+	</bean>
+</beans>
+
+
+
+
+
+
+
+

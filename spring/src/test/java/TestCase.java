@@ -1,8 +1,9 @@
-package ioc;
+
 
 import org.junit.Test;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
+import annocation.A;
 
 public class TestCase {
 
@@ -41,5 +42,15 @@ public class TestCase {
 		AbstractApplicationContext aac = new ClassPathXmlApplicationContext("ioc.xml");
 		CopyOfC cc = aac.getBean("Cc",CopyOfC.class);
 		System.out.println(cc);
+	}
+	
+	@Test
+	public void test5(){
+		
+		AbstractApplicationContext aac = new ClassPathXmlApplicationContext("annocation.xml");
+		A a = aac.getBean("a",A.class) ;
+		
+		aac.close();
+		System.out.println(a);
 	}
 }

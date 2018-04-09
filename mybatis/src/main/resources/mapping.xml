@@ -1,0 +1,59 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- namespace 的值是 DeptMapper 接口
+  每个Mapper 接口对应一个配置文件  -->
+<mapper namespace="com.tarena.entity.DeptMapper">
+	<!-- id对应 DeptMapper接口方法名
+	 paramaterType 对应方法的参数类型
+	 #{deptno} 对应 参数的Bean属性, 就是方法getDeptno()-->
+	<insert id="addDept" 
+		parameterType="com.tarena.entity.Dept">
+		<!-- Bean ID的属性名, order是在insert语句之前执行
+		resultType 是属性的数据类型-->
+		<selectKey keyProperty="deptno" order="BEFORE"
+			resultType="java.lang.Integer">
+			select SEQ_T_DEPT.nextval from dual
+		</selectKey>
+		insert into T_DEPT (deptno, dname, loc)
+		values (#{deptno}, #{dname}, #{loc})
+	</insert>
+	<!-- 在Dept.xml添加SQL语句 -->
+	<!-- resultType的值与返回List<Dept>中元素类型一致 
+	约定: Dept 的Bean属性名 与 列名一致! -->
+	<select id="findAllDept"
+		resultType="com.tarena.entity.Dept">
+		select deptno, dname, loc from T_DEPT
+	</select>
+	<select id="findDeptById"
+		parameterType="java.lang.Integer"
+		resultType="com.tarena.entity.Dept"> 
+		select deptno, dname, loc from T_DEPT 
+		where deptno=#{deptno}
+	</select>
+	<update id="updateDept" 
+		parameterType="com.tarena.entity.Dept">
+		update T_DEPT set dname=#{dname}, 
+		loc=#{loc} where deptno=#{deptno}
+	</update>
+	<delete id="deleteDept"
+		parameterType="com.tarena.entity.Dept">
+		delete from T_DEPT where deptno=#{deptno}
+	</delete>
+	<select id="findValue" 
+		resultType="java.util.Map">
+		select dname, loc from T_DEPT
+	</select>	
+	<select id="findValues" 
+		resultType="com.tarena.vo.DeptVO">
+		select dname, loc from T_DEPT
+	</select>
+</mapper>
+
+
+
+
+
+
+

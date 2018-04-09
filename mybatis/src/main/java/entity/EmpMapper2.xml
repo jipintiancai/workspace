@@ -1,0 +1,51 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<!-- Dept.xml 在com.tarena.entity 包中  -->  
+<!DOCTYPE mapper PUBLIC "-//ibatis.apache.org//DTD Mapper 3.0//EN"      
+ "http://ibatis.apache.org/dtd/ibatis-3-mapper.dtd">
+<!-- namespace 的值是 DeptMapper 接口
+  每个Mapper 接口对应一个配置文件  -->
+<mapper namespace="mapper.EmpDao">
+	<insert id="save" parameterType="entity.Emp">
+		insert into emp values(emp_seq.nextval,#{name},#{age})
+	</insert>
+	
+	<!-- id:要求唯一
+		resultType：返回结果类型
+		parameterType:参数类型 -->
+	<select id="findAll" resultType="entity.emp">
+		select * from Emp
+	</select>
+	
+	<select id="findById" parameterType="int" resultType="entity.emp">
+		select * from Emp where  id=#{id1}
+	</select>
+	
+	<update id="modify" parameterType="entity.Emp">
+		update Emp set name=#{name} ,age=#{age} where id=#{id}
+	</update>
+	
+	<delete id="delete" parameterType="int">
+		delete from Emp where  id=#{id1}
+	</delete>
+	
+	<!-- 返回map类型 -->
+	<select id="findById2" parameterType="Integer" resultType="map">
+		select * from Emp where id=#{id2}
+	</select>
+	
+	<select id="findById3" parameterType="int" resultMap="emp2Map">
+		select * from Emp where id=#{id3}
+	</select>
+	<!-- 使用resultMap解决属性名与字段名不一致的问题 -->
+	<resultMap type="entity.Emp2" 	id="emp2Map">
+		<result property="empName" column="name"/>
+		<result property="empAge" column="age"/>
+	</resultMap>
+</mapper>
+
+
+
+
+
+
+
